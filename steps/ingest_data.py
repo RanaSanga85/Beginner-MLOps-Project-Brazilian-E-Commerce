@@ -23,8 +23,8 @@ def ingest_data(data_path: str):
     """    
     try:
         ingest_data = IngestData(data_path)
-        df = ingest_data.get_data()  #The get_data method of the IngestData instance is called, 
-                                     #which reads the data from the file and returns it as a DataFrame
+        df = ingest_data.get_data()  #The get_data method of the IngestData instance is called, which 
+                                     #reads the data from the file and returns it as a DataFrame
         return df
     except Exception as e:
         logging.error(f"Error while ingesting data: {e}")
