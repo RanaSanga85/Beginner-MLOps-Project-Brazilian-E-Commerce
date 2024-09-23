@@ -9,7 +9,7 @@ class IngestData:
     def __init__(self, data_path:str):
         self.data_path = data_path
 
-    def get_data(self):
+    def read_data(self):
         """
         This method defines the functionality to read the data from the provided path.
         """
@@ -23,7 +23,7 @@ def ingest_data(data_path: str):
     """    
     try:
         ingest_data = IngestData(data_path)
-        df = ingest_data.get_data()  #The get_data method of the IngestData instance is called,  
+        df = ingest_data.read_data()  #The get_data method of the IngestData instance is called,  
                                      #which reads the data from the file and returns it as a DataFrame
         return df
     except Exception as e:
