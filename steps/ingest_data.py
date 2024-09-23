@@ -17,13 +17,13 @@ class IngestData:
         return pd.read_csv(self.data_path)
     
 @step   #This is a decorator provided by ZenML, which converts the function ingest_data into a ZenML pipeline step
-def ingest_data(data_path: str):
+def ingest_df(data_path: str):
     """
     This function is a step in the pipeline that takes data_path as an argument:
     """    
     try:
-        ingest_data = IngestData(data_path)
-        df = ingest_data.read_data()  #The get_data method of the IngestData instance is called,  
+        ingest_df = IngestData(data_path)
+        df = ingest_df.read_data()  #The get_data method of the IngestData instance is called,  
                                      #which reads the data from the file and returns it as a DataFrame
         return df
     except Exception as e:
