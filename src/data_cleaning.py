@@ -64,4 +64,3 @@ class DataCleaning:
         except Exception as e:
             logging.error("Error in handling dara: {}".format(e))
             raise e
-        
