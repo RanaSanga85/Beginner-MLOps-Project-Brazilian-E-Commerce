@@ -54,7 +54,7 @@ class SplitHandler(DataHandler):
             logging.error(f"Error during data split: {e}")
             raise e
         
-
+# Data Processor to apply strategies
 class DataProcessor:
     def __init__(self, data:pd.DataFrame, strategy:DataHandler):
         self.data = data
@@ -66,7 +66,7 @@ class DataProcessor:
           Executes the given strategy (preprocessing or splitting).
         """
         try:
-            return self.strategy.handle_data(self.data)
+            return self.strategy.process(self.data)
         except Exception as e:
             logging.error(f"Error during data split: {e}")
             raise e
