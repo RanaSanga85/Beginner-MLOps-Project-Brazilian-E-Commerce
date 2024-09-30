@@ -18,9 +18,11 @@ def clean_df(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series, p
     try:
         # Preprocess the data
         processed_data = DataProcessor(df, PreprocessHandler()).execute()
-
+        logging.info("Data cleaning completed")
+        
         # Split the data
         return DataProcessor(processed_data, SplitHandler()).execute()
+       
 
     except Exception as e:
         logging.error(f"Error in data cleaning: {e}")
