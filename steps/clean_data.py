@@ -1,7 +1,9 @@
 import logging
 import pandas as pd
 from zenml import step
+
 from src.data_cleaning import DataProcessor, SplitHandler, PreprocessHandler
+
 
 from typing import Tuple
 
@@ -17,11 +19,18 @@ def clean_df(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series, p
     """
     try:
         # Preprocess the data
-        processed_data = DataProcessor(df, PreprocessHandler()).execute()
+        processed_data = PreprocessHandler()
+        data_cleaning = DataProcessor(df, processed_data)
+        processed_data = data_cleaning.execute()
+
+        # Split the data
+        split_data = SplitHandler()
+        data_cleaning = DataProcessor(processed_data, split_data)
+        X_train, X_test, y_train, y_test = data_cleaning.execute()
+        
         logging.info("Data cleaning completed")
         
-        # Split the data
-        return DataProcessor(processed_data, SplitHandler()).execute()
+        return X_train, X_test, y_train, y_test
        
 
     except Exception as e:
